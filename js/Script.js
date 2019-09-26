@@ -1,3 +1,5 @@
+var KeySpecs = require('../app');
+var mysql = require('mysql');
 var Name = "Nithin";
 
 const Car = [{
@@ -23,14 +25,18 @@ const Car = [{
 function doc(val){
     return document.getElementById(val);
 }
+KeySpecs.mysqlconnection.query('select * from keyspecs', function(err,results){
+    if(err) throw err;
+    console.log(results);
+})
 
 for (var i = 0; i <= Car.length; i++) {
-    doc("ARAI_M").innerHTML = Car[i].Key_Sepcs.ARAI_Mileage+"kmpl";
-    doc("Fuel_T").innerHTML = Car[i].Key_Sepcs.Fuel_Type;
-    doc("Engine_D").innerHTML = Car[i].Key_Sepcs.Engine_Displacement_cc;
+    doc("ARAI_M").innerHTML = KeySpecs.Arai_M+"kmpl";
+    doc("Fuel_T").innerHTML = KeySpecs.Fuel_T;
+    doc("Engine_D").innerHTML = KeySpecs.Engine_D;
     doc("Max_Power").innerHTML = Car[i].Key_Sepcs.Max_Power_bhp+"bhp@"+Car[i].Key_Sepcs.Max_Power_rpm+"rpm";
     doc("Max_Torque").innerHTML = Car[i].Key_Sepcs.Max_Torque+" NM";
-    doc("Seating_C").innerHTML = Car[i].Key_Sepcs.Seating_Capacity;
+    doc("Seating_C").innerHTML = KeySpecs.Seating_C;
     doc("T_Type").innerHTML = Car[i].Key_Sepcs.TransmissionType;
     doc("Boot_Space").innerHTML = Car[i].Key_Sepcs.Boot_Space+" I";
     doc("Fuel_T_C").innerHTML = Car[i].Key_Sepcs.Fuel_Tank_Capacity;
